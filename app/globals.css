@@ -1,2 +1,14 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+
+@theme {
+    --color-text: #10648c;
+    --color-text-alt: #2c84b4;
+    --color-bg: #b0c0ca;
+    --color-bg-alt: #43444c;
+    --color-primary: #ae6c5f;
+    --color-secondary: #eccabb;
+}
+
 
