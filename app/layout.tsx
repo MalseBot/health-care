@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import { Navbar1 } from "@/components/ui/navbar1";
 
 export const metadata: Metadata = {
   title: "Dentist",
@@ -15,9 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={` bg-bg antialiased`}
+        className={` bg-background text-text antialiased`}
       >
-        <Navbar />
+        <Navbar1 />
         {children}
       </body>
     </html>

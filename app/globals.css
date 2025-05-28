@@ -1,14 +1,26 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-
 
 @theme {
-    --color-text: #10648c;
-    --color-text-alt: #2c84b4;
-    --color-bg: #b0c0ca;
-    --color-bg-alt: #43444c;
-    --color-primary: #ae6c5f;
-    --color-secondary: #eccabb;
+    --color-primary: #9747FF;
+    --color-secondary: #C379F9;
+    --color-background: #FFFFFF;
+    --color-text: #212121;
+    --color-border: #3F3D56;
+    --color-accent: #B2B2B2;
 }
 
 
+.day{
+    background: var(--color-accent);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0 0 8 8 ;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.day:hover{
+    background: var(--color-secondary);
+}
+.day:active{
+    background: var(--color-primary);
+}
