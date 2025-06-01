@@ -3,9 +3,11 @@
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { authClient } from "@/lib/auth-client"
 import { signInSchema } from "@/lib/formSchema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import { z } from "zod"
 
 
@@ -20,10 +22,27 @@ const SignIn = () => {
   })
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof signInSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+  async function onSubmit(values: z.infer<typeof signInSchema>) {
+    const {email, password } = values;
+
+      const {data,error}= await authClient.signIn.email(
+        {
+          email,
+          password,
+          callbackURL: '/',
+        },
+        {
+          onRequest: () => {
+            toast.loading('Signing up...');
+          },
+          onSuccess: () => {
+            form.reset();
+          },
+          onError: (ctx) => {
+            toast.error(ctx.error.message);
+          },
+        }
+      );
   }
 
   return (

@@ -1,3 +1,4 @@
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,9 +10,9 @@ datasource db {
 
 model User {
   id            String    @id @default(cuid())
-  name      String?
+  name          String?
   email         String    @unique
-  emailVerified DateTime?
+  emailVerified Boolean?
   image         String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt

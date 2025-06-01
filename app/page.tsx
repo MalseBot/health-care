@@ -13,7 +13,7 @@ export default function Home() {
         <div className="flex items-start gap-2 relative -translate-y-3 p-3 rounded-es-2xl rounded-ee-2xl
 "> 
 {        daysOfWeek.map((day, index) => (
-          <span key={index}  className={`day ${day === dayOfWeek ? '!bg-secondary text-white' : 'text-text'}`}>
+          <span key={index}  className={`day ${day === dayOfWeek ? ' !bg-secondary text-white' : 'text-text'}`}>
             {day}
           </span>
         ))}

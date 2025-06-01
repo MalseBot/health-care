@@ -1,3 +1,4 @@
+"use client";
 import { Archive, Book, BookPlus, Calendar, Menu, Sunset, Trees, Zap } from "lucide-react";
 
 import {
@@ -24,6 +25,7 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
 
 interface MenuItem {
   title: string;
@@ -124,27 +126,23 @@ const Navbar1 = ({
       url: "#",
     },
   ],
-  auth = {
-    login: { title: "Login", url: "#" },
-    signup: { title: "Sign up", url: "#" },
-  },
 }: Navbar1Props) => {
+  const { data: session } = authClient.useSession()
+
   return (
-    <section className="py-4 w-full flex fixed">
+    <section className="py-4 w-full flex shadow-2xl">
       <div className="w-full px-5">
         {/* Desktop Menu */}
         <nav className="hidden justify-between lg:flex">
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-10">
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
               <Image width={20} height={20} src={logo.src} className="max-h-8" alt={logo.alt} />
-              <span className="text-lg font-semibold tracking-tighter">
-                {logo.title}
-              </span>
             </a>
+            <h2 className=" font-bold text-text uppercase text-xl"> Hello DR.{session?.user.name}</h2>
             <div className="flex items-center">
               <NavigationMenu>
-                <NavigationMenuList>
+                <NavigationMenuList >
                   {menu.map((item) => renderMenuItem(item))}
                 </NavigationMenuList>
               </NavigationMenu>
@@ -184,12 +182,7 @@ const Navbar1 = ({
                   </Accordion>
 
                   <div className="flex flex-col gap-3">
-                    <Button asChild variant="outline">
-                      <a href={auth.login.url}>{auth.login.title}</a>
-                    </Button>
-                    <Button asChild>
-                      <a href={auth.signup.url}>{auth.signup.title}</a>
-                    </Button>
+                    
                   </div>
                 </div>
               </SheetContent>
@@ -204,11 +197,11 @@ const Navbar1 = ({
 const renderMenuItem = (item: MenuItem) => {
   if (item.items) {
     return (
-      <NavigationMenuItem key={item.title}>
+      <NavigationMenuItem key={item.title} className="z-50">
         <NavigationMenuTrigger><Link href={item.url}>{item.title}</Link></NavigationMenuTrigger>
-        <NavigationMenuContent className=" text-text">
+        <NavigationMenuContent className=" text-text bg-background">
           {item.items.map((subItem) => (
-            <NavigationMenuLink asChild key={subItem.title} className="w-80">
+            <NavigationMenuLink asChild key={subItem.title} className="w-100">
               <SubMenuLink item={subItem} />
             </NavigationMenuLink>
           ))}
@@ -255,7 +248,7 @@ const renderMobileMenuItem = (item: MenuItem) => {
 const SubMenuLink = ({ item }: { item: MenuItem }) => {
   return (
     <a
-      className="flex flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-primary hover:text-accent-foreground"
+      className="flex flex-row gap-4 w-max rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-primary hover:text-accent-foreground"
       href={item.url}
     >
       <div className="text-foreground">{item.icon}</div>
