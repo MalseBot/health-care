@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar1 } from "@/components/ui/navbar1";
-import Providers from "@/components/Providers";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Dentist",
@@ -18,10 +18,9 @@ export default function RootLayout({
       <body
         className={` bg-background text-text antialiased`}
         >
-        <Providers>
         <Navbar1 />
         {children}
-        </Providers>
+        <Toaster/>
       </body>
     </html>
   );

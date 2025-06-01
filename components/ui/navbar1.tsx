@@ -24,7 +24,6 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import Link from "next/link";
-import SigninButton from "../SignInButton";
 
 interface MenuItem {
   title: string;
@@ -131,8 +130,8 @@ const Navbar1 = ({
   },
 }: Navbar1Props) => {
   return (
-    <section className="py-4">
-      <div className="container">
+    <section className="py-4 w-full flex fixed">
+      <div className="w-full px-5">
         {/* Desktop Menu */}
         <nav className="hidden justify-between lg:flex">
           <div className="flex items-center gap-6">
@@ -151,14 +150,12 @@ const Navbar1 = ({
               </NavigationMenu>
             </div>
           </div>
-          <div className="flex gap-2">
-            <SigninButton />
-          </div>
+
         </nav>
 
         {/* Mobile Menu */}
-        <div className="block lg:hidden">
-          <div className="flex items-center justify-between">
+        <div className="block w-full lg:hidden">
+          <div className="flex items-center w-full justify-between">
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
               <Image width={20} height={20} src={logo.src} className="max-h-8" alt={logo.alt} />
